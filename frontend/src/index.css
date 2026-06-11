@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+:root {
+	color-scheme: light;
+	--bg: #f8fafc;
+	--bg-soft: rgba(255, 255, 255, 0.9);
+	--bg-card: rgba(255, 255, 255, 0.96);
+	--border: rgba(148, 163, 184, 0.22);
+	--text: #0f172a;
+	--muted: #64748b;
+	--accent: #2563eb;
+	--accent-strong: #1d4ed8;
+	--accent-2: #4f46e5;
+	--shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: 'Inter', 'DM Sans', sans-serif;
+	background:
+		radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 30%),
+		radial-gradient(circle at 80% 10%, rgba(99, 102, 241, 0.08), transparent 26%),
+		linear-gradient(180deg, #ffffff 0%, #f8fafc 45%, #eef2ff 100%);
+	color: var(--text);
+}
+
+button,
+input {
+	font: inherit;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.auth-card,
+.sidebar-card,
+.editor-card,
+.dashboard-panel,
+.page-panel {
+	border: 1px solid var(--border);
+	background: linear-gradient(180deg, var(--bg-card), var(--bg-soft));
+	backdrop-filter: blur(10px);
+	box-shadow: var(--shadow);
+}
+
+.auth-card {
+	width: min(100% - 2rem, 460px);
+	margin: 4rem auto;
+	padding: 2rem;
+	border-radius: 28px;
+}
+
+.auth-card h2,
+.dashboard-title,
+.editor-title {
+	letter-spacing: -0.03em;
+}
+
+.field-input {
+	width: 100%;
+	border: 1px solid rgba(148, 163, 184, 0.26);
+	background: #ffffff;
+	color: var(--text);
+	border-radius: 16px;
+	padding: 0.95rem 1rem;
+	outline: none;
+	transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.field-input::placeholder {
+	color: rgba(100, 116, 139, 0.8);
+}
+
+.field-input:focus {
+	border-color: rgba(37, 99, 235, 0.55);
+	box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.primary-button,
+.link-button,
+.document-item {
+	transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.primary-button {
+	border: 1px solid rgba(37, 99, 235, 0.16);
+	background: linear-gradient(135deg, rgba(37, 99, 235, 0.98), rgba(79, 70, 229, 0.95));
+	color: #ffffff;
+	font-weight: 700;
+	border-radius: 16px;
+	padding: 0.85rem 1.1rem;
+	box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+}
+
+.primary-button:hover:not(:disabled) {
+	transform: translateY(-1px);
+	box-shadow: 0 16px 28px rgba(37, 99, 235, 0.24);
+}
+
+.primary-button:disabled {
+	opacity: 0.65;
+	cursor: not-allowed;
+}
+
+.link-button {
+	color: var(--accent);
+	font-weight: 700;
+}
+
+.link-button:hover {
+	color: var(--accent-strong);
+}
+
+.dashboard-shell {
+	min-height: 100vh;
+	padding: 1.5rem;
+}
+
+.dashboard-hero {
+	display: grid;
+	grid-template-columns: 1.3fr auto;
+	gap: 1rem;
+	align-items: end;
+	margin-bottom: 1.5rem;
+}
+
+.dashboard-hero-card,
+.editor-toolbar,
+.editor-preview-card {
+	border: 1px solid var(--border);
+	background: rgba(255, 255, 255, 0.88);
+	backdrop-filter: blur(10px);
+	border-radius: 24px;
+}
+
+.dashboard-hero-card {
+	padding: 1.5rem;
+}
+
+.dashboard-badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.65rem;
+	margin-top: 1rem;
+	align-items: flex-start;
+}
+
+.dashboard-badge {
+	border: 1px solid rgba(148, 163, 184, 0.22);
+	background: #ffffff;
+	color: var(--muted);
+	padding: 0.4rem 0.7rem;
+	border-radius: 999px;
+	font-size: 0.82rem;
+	line-height: 1;
+	width: fit-content;
+}
+
+.dashboard-grid {
+	display: grid;
+	grid-template-columns: minmax(280px, 340px) 1fr;
+	gap: 1rem;
+}
+
+.sidebar-card,
+.editor-card {
+	border-radius: 28px;
+	padding: 1.25rem;
+}
+
+.document-item {
+	width: 100%;
+	border: 1px solid rgba(148, 163, 184, 0.2);
+	background: #ffffff;
+	color: var(--text);
+	border-radius: 18px;
+	padding: 0.95rem 1rem;
+	text-align: left;
+}
+
+.document-item:hover {
+	transform: translateY(-1px);
+	border-color: rgba(37, 99, 235, 0.32);
+	background: rgba(37, 99, 235, 0.06);
+}
+
+.editor-shell {
+	display: grid;
+	gap: 1rem;
+}
+
+.editor-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1rem 1.1rem;
+}
+
+.editor-surface {
+	border: 1px solid rgba(148, 163, 184, 0.2);
+	background: #ffffff;
+	border-radius: 24px;
+	padding: 1rem;
+	min-height: 72vh;
+}
+
+.editor-surface .ProseMirror {
+	min-height: 68vh;
+	outline: none;
+	color: var(--text);
+	line-height: 1.75;
+	font-size: 1.02rem;
+}
+
+.editor-surface .ProseMirror p {
+	margin: 0 0 0.9rem;
+}
+
+.editor-surface .ProseMirror h1,
+.editor-surface .ProseMirror h2,
+.editor-surface .ProseMirror h3 {
+	letter-spacing: -0.03em;
+	margin: 1.2rem 0 0.8rem;
+}
+
+@media (max-width: 960px) {
+	.dashboard-hero,
+	.dashboard-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.dashboard-shell {
+		padding: 1rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.auth-card,
+	.sidebar-card,
+	.editor-card,
+	.dashboard-hero-card,
+	.editor-toolbar,
+	.editor-surface {
+		border-radius: 22px;
+	}
+
+	.auth-card {
+		width: min(100% - 1rem, 460px);
+		margin: 1rem auto;
+		padding: 1.25rem;
+	}
+}
