@@ -16,7 +16,23 @@ const Document = require('./models/DocumentModel');
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [process.env.FRONTEND_URL, process.env.BACKEND_URL].filter(Boolean);
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Not allowed by CORS'));
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // ROUTES
@@ -29,10 +45,10 @@ app.use('/auth', authRoutes);
 app.use('/documents', docRoutes);
 
 // MONGODB CONNECTION
-const mongoUrl = process.env.MONGO_URL;
+const mongoUrl = process.env.mongob_url || process.env.MONGO_URL;
 
 if (!mongoUrl || (!mongoUrl.startsWith('mongodb://') && !mongoUrl.startsWith('mongodb+srv://'))) {
-  console.warn('MongoDB connection skipped: set MONGO_URL to a valid mongodb:// or mongodb+srv:// URI in backend/.env');
+  console.warn('MongoDB connection skipped: set mongob_url to a valid mongodb URI in backend/.env');
 } else {
   mongoose.connect(mongoUrl)
     .then(() => console.log('MongoDB Connected'))
@@ -45,7 +61,7 @@ const server = http.createServer(app);
 
 // Socket.IO for realtime document sync (Phase 3)
 const io = new Server(server, {
-  cors: { origin: '*' },
+  cors: corsOptions,
 });
 
 // map userId => Set(socketId)

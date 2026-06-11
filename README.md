@@ -78,8 +78,9 @@ frontend/
 1. `npm start` runs `node server.js` in the backend folder.
 2. `dotenv` loads `backend/.env`.
 3. Express starts on the configured port, usually `5000`.
-4. MongoDB connects using `MONGO_URL`.
+4. MongoDB connects using `mongob_url` if it exists, otherwise it falls back to `MONGO_URL`.
 5. Socket.IO and the Yjs websocket endpoint are attached to the same server.
+6. CORS only accepts the origins listed in `FRONTEND_URL` and `BACKEND_URL`.
 
 ### Frontend startup
 
