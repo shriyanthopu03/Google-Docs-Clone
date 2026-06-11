@@ -14,7 +14,7 @@ import Dashboard from "./components/Dashboard";
 import ProfilePage from "./components/ProfilePage";
 import { disconnectSocket, getSocket } from "./utils/socket";
 
-const API_BASE = "http://localhost:5000/api/auth";
+const API_BASE = `${import.meta.env.VITE_BACKEND_URL || "http://localhost:5000"}/api/auth`;
 
 function AuthRoute({ onAuthenticated }) {
   const navigate = useNavigate();

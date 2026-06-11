@@ -44,10 +44,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/documents', docRoutes);
 app.use('/api/users', userRoutes);
 
-// Backward-compatible aliases for older clients
-app.use('/auth', authRoutes);
-app.use('/documents', docRoutes);
-
 // MONGODB CONNECTION
 const mongoUrl = process.env.mongob_url || process.env.MONGO_URL;
 
