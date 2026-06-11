@@ -31,9 +31,11 @@ export default function Editor({ content, setContent, docId, collabEnabled = fal
 
     const url = import.meta.env.VITE_YWS_URL || (() => {
       try {
-        const loc = window.location;
-        const protocol = loc.protocol === 'https:' ? 'wss:' : 'ws:';
-        return `${protocol}//${loc.host}/yjs`;
+        // Extract backend URL and convert to WebSocket protocol
+        const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+        const protocol = socketUrl.startsWith('https') ? 'wss:' : 'ws:';
+        const host = socketUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        return `${protocol}//${host}/yjs`;
       } catch (e) {
         return 'ws://localhost:1234';
       }

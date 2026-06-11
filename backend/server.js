@@ -62,6 +62,9 @@ const server = http.createServer(app);
 // Socket.IO for realtime document sync (Phase 3)
 const io = new Server(server, {
   cors: corsOptions,
+  transports: ['polling', 'websocket'],
+  allowEIO3: true,
+  path: '/socket.io/',
 });
 
 // map userId => Set(socketId)
