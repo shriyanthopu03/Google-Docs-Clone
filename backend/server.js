@@ -35,6 +35,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.status(200).send('Connected successfully');
+});
+
 // ROUTES
 app.use('/api/auth', authRoutes);
 app.use('/api/documents', docRoutes);
